@@ -1,199 +1,172 @@
-@media (max-width: 768px) {
-    #articlesContainer {
-      grid-template-columns: 1fr; 
-    }
-  }
-  
-  body {
-    font-family: sans-serif;
-    line-height: 1.6;
-    margin: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  
-  }
-  
-  
-  #searchInput {
-    width: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
-  
-  #articlesContainer {
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    color-scheme: dark;
+    --ink: #f7f4fb;
+    --muted: rgba(247, 244, 251, 0.68);
+    --line: rgba(255, 255, 255, 0.16);
+    --panel: rgba(12, 10, 20, 0.8);
+    --accent: #d28aff;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { min-height: 100%; }
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    background: #08060d;
+    color: var(--ink);
+    font-family: 'Poppins', sans-serif;
+}
+
+.background-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+    padding: 0 5vw;
+    border-bottom: 1px solid var(--line);
+    background: rgba(9, 8, 13, 0.72);
+    backdrop-filter: blur(14px);
+}
+
+.brand {
+    color: var(--ink);
+    font-family: 'Inconsolata', monospace;
+    font-size: 23px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+nav { display: flex; gap: 28px; }
+nav a {
+    color: var(--muted);
+    font-size: 14px;
+    text-decoration: none;
+}
+nav a:hover, nav a.active { color: var(--ink); }
+
+.page-shell {
+    width: min(920px, 90%);
+    margin: 0 auto;
+    padding: 90px 0 56px;
+}
+
+.intro { max-width: 680px; }
+.eyebrow {
+    color: var(--accent);
+    font-family: 'Inconsolata', monospace;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+h1, p { margin: 0; }
+h1 {
+    margin-top: 10px;
+    font-size: clamp(48px, 8vw, 92px);
+    line-height: 0.95;
+}
+
+.intro p {
+    margin-top: 22px;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.search-panel {
+    margin-top: 58px;
+    padding: clamp(22px, 4vw, 38px);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+    backdrop-filter: blur(14px);
+}
+
+.search-panel label {
+    display: block;
+    margin-bottom: 12px;
+    color: rgba(247, 244, 251, 0.84);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.search-box:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(210, 138, 255, 0.14);
+}
+
+.search-box input {
+    width: 100%;
+    min-width: 0;
+    padding: 15px 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+}
+
+.search-box input::placeholder { color: rgba(247, 244, 251, 0.45); }
+.search-box span { color: var(--accent); font-family: 'Inconsolata', monospace; }
+
+#searchResult {
     display: grid;
-    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 20px;
-  }
-  
-  .article {
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .article h2 {
-    margin-top: 0;
-  }
-  
-  .article a {
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .article a:hover {
-    text-decoration: underline;
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif; /* Use a professional font */
-    line-height: 1.6;
-    margin: 0; /* Remove default body margins */
-    background-color: #f4f4f4; /* Light gray background */
-    color: #333; /* Dark gray text */
-  }
-  
-  h1 {
-    text-align: center;
-    margin: 20px 0; /* Adjust margins */
-    color: #222; /* Darker header text */
-  }
-  
-  #searchInput {
-    width: 400px; /* Wider search bar */
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 20px auto; /* Center the search bar */
-    display: block; /* Makes it a block element for better centering */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  }
-  
-  #articlesContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjust column width */
-    grid-gap: 30px;
-    padding: 20px;
-    margin: 0 auto; /* Center the container */
-    max-width: 1200px; /* Set a maximum width for responsiveness */
-  }
-  
-  .article {
-    border: 1px solid #ddd; /* Lighter border color */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
-    background-color: #fff; /* White background for articles */
-  }
-  
-  .article h2 {
-    margin-top: 0;
-    font-size: 1.8em; /* Larger title */
-    color: #333; /* Darker title color */
-  }
-  
-  .article a {
-    text-decoration: none;
-    color: #007bff; /* Blue link color */
-  
-  }
-  
-  body {
-    background-image: url('/Resorce/img/hero.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
-  
-    .content-wrapper {
-      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Adds a shadow */
-      margin: 20px auto;
-      max-width: 1200px; /* Adjust as needed */
-    }
-  
-    @media (max-width: 768px) {
-      .content-wrapper {
-        max-width: 90%; /* Adjust for smaller screens */
-      }
-    }
-  
-    /* Style the search bar */
-    #searchInput {
-      width: 100%;
-      padding: 15px;
-      border: 1px solid #ffffff52;
-      border-radius: 5px;
-      margin-bottom: 20px;
-      box-sizing: border-box; /* Include padding and border in width */
-    }
-  
-    /* Style the articles container */
-    #articlesContainer {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      grid-gap: 20px;
-    }
-  
-    /* Style the individual articles */
-    .article {
-      background-color: #ffffff81;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease; /* Add a smooth transition */
-    } 
-    .article:hover {
-      transform: translateY(-5px); /* Slightly lift on hover */
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
-    }
-  
-    .article h2 {
-      margin-top: 0;
-      font-size: 1.5em;
-      color: #333333;
-    }
-  
-    .article a {
-      text-decoration: none;
-      color: #770fd8;
-    }
-  
-    .content-wrapper {
-      background-color: rgba(255, 255, 255, 0.39);
-    }
-  
-    body {
-      filter: none;
-      background-attachment: fixed;
-  
-    }
-  
-    button {
-    background-color: #009c0513; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  button:hover {
-    background-color: #90e0931f;
-  }
-  
-  
+    gap: 8px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+}
+#searchResult:empty { display: none; }
+
+#searchResult li {
+    padding: 13px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.06);
+}
+#searchResult li a { color: var(--ink); text-decoration: none; }
+#searchResult li:hover { background: rgba(210, 138, 255, 0.16); }
+
+.catalog-note {
+    margin-top: 18px;
+    color: rgba(247, 244, 251, 0.46);
+    font-size: 13px;
+}
+
+@media (max-width: 650px) {
+    .site-header { padding: 0 6%; }
+    nav { gap: 12px; }
+    nav a { font-size: 12px; }
+    .page-shell { padding-top: 64px; }
+}

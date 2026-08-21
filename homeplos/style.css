@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@102.5,500&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 input[type="text"] {
     animation: fadeIn 0.3s ease-in-out;
 }
@@ -19,8 +21,6 @@ input[type="text"] {
 }
 
 
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@102.5,500&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 *,
 *::before,
 *::after {
@@ -32,12 +32,31 @@ input[type="text"] {
 body {
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
     box-sizing: border-box;
     padding: 0 20px;
-    background-image: url(/Resorce/img/fondo.jpeg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: #08060d;
+    position: relative;
+    isolation: isolate;
+}
+
+.background-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.62);
+    pointer-events: none;
+    z-index: 1;
 
 }
 
@@ -85,7 +104,7 @@ body {
 }
 
 .header .navigation ul li a:hover {
-    background-color: slateblue;
+    background-color: rgb(231, 231, 231);
 }
 
 .header .navigation ul li ul {
@@ -172,11 +191,117 @@ body {
 
 .search-container {
     text-align: center;
-    margin: 100px auto;
+    margin: 100px auto 0;
     width: 90%;
     position: relative;
+    z-index: 2;
 
     border-radius: 100px;
+}
+
+.suggestions {
+    position: relative;
+    z-index: 2;
+    width: min(90%, 980px);
+    margin: 48px auto 0;
+}
+
+.suggestions-heading {
+    margin: 0 10px 14px;
+    color: #ffffff;
+}
+
+.eyebrow {
+    display: block;
+    margin-bottom: 4px;
+    color: #e19cff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.suggestions-heading h1 {
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: 600;
+}
+
+.suggestions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.suggestion-card {
+    position: relative;
+    min-height: 150px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    background: rgba(12, 10, 20, 0.72);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+    color: #ffffff;
+    text-decoration: none;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.suggestion-card::after {
+    content: '';
+    position: absolute;
+    inset: 45% 0 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.82));
+}
+
+.suggestion-card img {
+    display: block;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    opacity: 0.78;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.suggestion-card span {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    left: 14px;
+    z-index: 1;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.suggestion-card:hover {
+    border-color: rgba(225, 156, 255, 0.85);
+    transform: translateY(-4px);
+}
+
+.suggestion-card:hover img {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .suggestions {
+        margin-top: 32px;
+    }
+
+    .suggestions-grid {
+        gap: 8px;
+    }
+
+    .suggestion-card,
+    .suggestion-card img {
+        min-height: 116px;
+        height: 116px;
+    }
+
+    .suggestion-card span {
+        right: 9px;
+        bottom: 9px;
+        left: 9px;
+        font-size: 12px;
+    }
 }
 
 .search-container input[type="text"] {
@@ -196,23 +321,37 @@ body {
 
 #searchResult {
     list-style: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #a908dad3;
-    background-color: rgba(249, 230, 255, 0.699);
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 6px;
+    margin: 12px 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(10, 10, 18, 0.82);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
     max-height: 200px;
     overflow-y: auto;
-    border-radius: 10px;
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+}
+
+#searchResult:empty {
+    display: none;
 }
 
 #searchResult li {
-    padding: 10px;
-    cursor: pointer;
+    padding: 11px 14px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 14px;
+    text-align: left;
+    border-radius: 10px;
+}
+
+#searchResult li a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
 }
 
 #searchResult li:hover {
-    background-color: #db5efa9f;
+    background: rgba(190, 75, 255, 0.22);
 }
 
 @keyframes fadeIn { 

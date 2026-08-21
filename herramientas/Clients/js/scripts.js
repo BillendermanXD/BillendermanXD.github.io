@@ -3,35 +3,47 @@ const searchResult = document.getElementById('searchResult');
 
 async function fetchData(path) {
     try {
-      const response = await fetch(path);
-      return await response.json();
-    } catch (error) {
-      console.error("Error fetching JSON:", error);
-      return []; // Return empty array on error
+    const response = await fetch(path);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
     }
+    return await response.json();
+    } catch (error) {
+    console.error('Error al cargar los clientes:', error);
+    return [];
+  }
+}
+
+async function searchClients() {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+  searchResult.innerHTML = '';
+
+  if (!searchTerm) {
+    return;
   }
 
-searchInput.addEventListener('keyup', (event) => {
-    if (event.key === 'Enter') {
-        const searchTerm = searchInput.value.toLowerCase();
-        searchResult.innerHTML = ''; // Clear previous results
+  const clients = window.hakinovCatalogo?.clientes || await fetchData('../acticulos/clientes.json');
+  const matches = clients.filter(item =>
+    item && item.nombre && item.nombre.toLowerCase().includes(searchTerm)
+  );
 
-        // Fetch data from multiple JSON files
-        Promise.all([
-            fetchData('/acticulos/clientes.json'),
-            fetchData('/home/acticulos/data2.json') // Add more paths as needed
-        ]).then(dataArrays => {
-            const allData = dataArrays.flat(); // Flatten the array of arrays
-
-            const filteredData = allData.filter(item => item.name.toLowerCase().includes(searchTerm));
-            filteredData.forEach(item => {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = item.path;
-                link.textContent = item.name;
-                listItem.appendChild(link);
-                searchResult.appendChild(listItem);
-            });
-        });
+  if (matches.length === 0) {
+    searchResult.innerHTML = '<li>No se encontraron clientes.</li>';
+    return;
     }
-});
+
+  matches.forEach(item => {
+    const listItem = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = item.pagina ? `../${item.pagina}` : (item.url || '#');
+    link.textContent = item.nombre;
+    if (!item.pagina && item.tipoUrl === 'externa') {
+      link.target = '_blank';
+      link.rel = 'noreferrer';
+    }
+    listItem.appendChild(link);
+    searchResult.appendChild(listItem);
+  });
+}
+
+searchInput.addEventListener('input', searchClients);

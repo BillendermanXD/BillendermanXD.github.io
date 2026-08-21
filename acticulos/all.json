@@ -1,80 +1,8 @@
 
 [
   {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-  {
-    "name": "#",
-    "path": "#"
-  },
-{
-    "name": "#",
-    "path": "#"
+    "id": 1,
+    "title": "Artículo 1",
+    "content": "Contenido del artículo 1"
   }
-
 ]
