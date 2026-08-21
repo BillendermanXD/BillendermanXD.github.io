@@ -29,6 +29,12 @@ input[type="text"] {
     box-sizing: inherit;
 }
 
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
@@ -39,14 +45,18 @@ body {
     background: #08060d url('../Resorce/img/fondo.jpeg') center / cover no-repeat;
     position: relative;
     isolation: isolate;
+    width: 100%;
+    overflow: hidden;
 }
 
 .background-video {
     position: fixed;
     inset: 0;
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none;
+    max-height: none;
     object-fit: cover;
     z-index: -1;
     pointer-events: none;
