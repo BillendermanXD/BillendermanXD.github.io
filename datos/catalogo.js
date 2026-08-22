@@ -1,13 +1,14 @@
 window.hakinovCatalogo = {
     "juegos": [
         {
-            "nombre": "casa2",
-            "descripcion": "dadadadada",
-            "url": "https://pornhub.com",
-            "tipoUrl": "externa",
-            "imagen": "Resorce/img/Logo.jpeg",
-            "pagina": "publicaciones/juegos-casa2-1.html"
+            "nombre": "Minecraft",
+            "descripcion": "",
+            "url": "../especial/index.html",
+            "tipoUrl": "interna",
+            "imagen": "../especial/images/images.jpg",
+            "pagina": "publicaciones/juegos-minecraft-1.html"
         }
     ],
-    "clientes": []
+    "clientes": [],
+    "especial": []
 };

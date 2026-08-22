@@ -7,18 +7,15 @@
     <link rel="stylesheet" href="homeplos/style.css">
 </head>
 <body>
-    <video class="background-video" autoplay muted loop playsinline poster="Resorce/img/fondo.jpeg" aria-hidden="true">
+    <video class="background-video" autoplay muted loop playsinline preload="auto" poster="Resorce/img/fondo.jpeg" aria-hidden="true">
         <source src="Resorce/img/Videos/14668-258508783_small.mp4" type="video/mp4">
     </video>
 
     <header class="header">
-
         <div class="logo">HAKINOV1</div>
         <input type="checkbox" id="toggle">
         <label for="toggle"> <img class="menu" src="Resorce/img/menu.png" alt="menu"> </label>
-        
         <nav class="navigation">
-
             <ul>
                 <li><a href="/indexs/JuegosPages.html">Juegos</a></li>
                 <li><a href="/indexs/Clients.html">Clientes</a></li>
@@ -27,7 +24,6 @@
         </nav>
     </header>
 
-    
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Buscar archivo...">
         <ul id="searchResult"></ul>
@@ -54,6 +50,7 @@
         </div>
     </section>
 
-    <script src="homeplos/js/js/scripts.js"></script>
+    <script src="datos/catalogo.js?v=3"></script>
+    <script src="homeplos/js/js/scripts.js?v=3"></script>
 </body>
 </html>
