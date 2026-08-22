@@ -25,9 +25,18 @@ window.hakinovCatalogo = {
             "slug": "minecraftnnov.com",
             "resumen": "Aqui tienes los links mas confiables para descargar las ediciones de bedrock editions mas modernas, desbloqueadas y sin acortadores o links trampa. directos y funcionales para cada version.",
             "contenido": "Minecraft Install - Links ",
-            "portada": "../especial/images/images.jpg",
+            "portada": "especial/images/6712882.jpg",
             "imagenes": [],
-            "screenshots": [],
+            "screenshots": [
+                {
+                    "imagen": "Resorce/img/menu.png",
+                    "comentario": "ujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegf"
+                },
+                {
+                    "imagen": "Resorce/img/fondo2.jpeg",
+                    "comentario": "ujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegfujowhagifehueahgfuaoifudaopifhopaiehgfaiohegf"
+                }
+            ],
             "descarga": "",
             "enlace": "",
             "comentarios": [],
@@ -44,7 +53,7 @@ window.hakinovCatalogo = {
             "slug": "",
             "resumen": "los mejores launcher premiuns/no premiuns de Minecraft Java Edition.",
             "contenido": "",
-            "portada": "especial/images/minecraft-java-edition-457367.11.jpg",
+            "portada": "especial/images/9841088.jpg",
             "imagenes": [],
             "screenshots": [],
             "descarga": "",

@@ -91,18 +91,29 @@ function createPost(post) {
         ? { imagen: screenshot, comentario: '' }
         : { imagen: screenshot.imagen || screenshot.url || '', comentario: screenshot.comentario || '' });
     [...(post.imagenes || []).map(imagen => ({ imagen, comentario: '' })), ...screenshotItems].forEach((imageItem, index) => {
+        const imageRow = document.createElement('div');
+        imageRow.className = 'image-row';
+        const imageFrame = document.createElement('div');
+        imageFrame.className = 'image-frame';
         const image = document.createElement('img');
         image.className = index < (post.imagenes || []).length ? 'tutorial-image' : 'screenshot-image';
         setImageSource(image, imageItem.imagen);
         image.alt = index < (post.imagenes || []).length ? 'Imagen del tutorial' : 'Screenshot del proyecto';
         image.loading = 'lazy';
-        details.appendChild(image);
+        imageFrame.appendChild(image);
+        imageRow.appendChild(imageFrame);
         if (imageItem.comentario) {
-            const note = document.createElement('small');
+            const note = document.createElement('div');
             note.className = 'image-comment';
-            note.textContent = imageItem.comentario;
-            details.appendChild(note);
+            const noteLabel = document.createElement('span');
+            noteLabel.className = 'image-comment-label';
+            noteLabel.textContent = 'Nota';
+            const noteText = document.createElement('p');
+            noteText.textContent = imageItem.comentario;
+            note.append(noteLabel, noteText);
+            imageRow.appendChild(note);
         }
+        details.appendChild(imageRow);
     });
 
     const links = document.createElement('div');

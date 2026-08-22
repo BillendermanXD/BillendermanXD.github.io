@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-:root { --paper: #f1eadc; --ink: #1b251c; --moss: #597739; --soil: #a56843; --line: rgba(27,37,28,.17); }
+:root { --paper: #f1eadc; --ink: #1b251c; --moss: #597739; --soil: #a56843; --muted: #596257; --line: rgba(27,37,28,.17); }
 * { box-sizing: border-box; }
 body { position: relative; min-width: 320px; min-height: 100vh; margin: 0; overflow-x: hidden; color: var(--ink); background: #18241a url('../Resorce/img/images.jpg') center / cover fixed; font-family: 'DM Sans', sans-serif; isolation: isolate; }
 .special-background-video { position: fixed; inset: 0; z-index: -2; width: 100vw; height: 100vh; object-fit: cover; pointer-events: none; }
@@ -18,13 +18,15 @@ body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: 
 .special-hero h1 { max-width: 850px; margin: 0; color: #f7f4e9; font-family: 'Space Grotesk', sans-serif; font-size: clamp(48px, 9vw, 100px); line-height: .9; letter-spacing: -.06em; text-shadow: 0 3px 24px rgba(0,0,0,.32); }
 .special-hero p:not(.eyebrow) { max-width: 470px; margin: 28px 0 0; color: rgba(247,244,233,.82); font-size: 17px; line-height: 1.6; }
 .posts { display: grid; gap: 50px; padding: 58px 0 100px; }
-.post { display: grid; grid-template-columns: minmax(250px, .8fr) 1.2fr; gap: 42px; padding: 24px; border: 1px solid rgba(27,37,28,.22); background: rgba(241,234,220,.72); box-shadow: 0 18px 55px rgba(12,20,13,.18); backdrop-filter: blur(6px); }
+.post { display: grid; grid-template-columns: minmax(250px, .75fr) minmax(0, 1.25fr); gap: clamp(26px, 5vw, 58px); padding: clamp(22px, 4vw, 38px); border: 1px solid rgba(255,255,255,.34); border-radius: 18px; background: linear-gradient(135deg, rgba(241,234,220,.9), rgba(225,221,205,.78)); box-shadow: 0 24px 65px rgba(12,20,13,.24); backdrop-filter: blur(10px); }
 .post { animation: specialRise .7s ease both; }
 .post:nth-child(2) { animation-delay: .12s; }
 .post:nth-child(3) { animation-delay: .24s; }
+.post.expanded { grid-template-columns: 1fr; }
+.post.expanded .post-cover { height: 360px; }
 .post-cover { transition: transform .6s ease; }
 .post:hover .post-cover { transform: scale(1.025); }
-.post-cover { width: 100%; height: 280px; object-fit: cover; }
+.post-cover { width: 100%; height: 300px; border-radius: 12px; object-fit: cover; box-shadow: 0 14px 30px rgba(12,20,13,.2); }
 .post-body h2 { margin: 0 0 12px; font-family: 'Space Grotesk', sans-serif; font-size: 34px; line-height: 1.05; }
 .post-summary { margin: 0 0 18px; color: var(--soil); font-weight: 700; }
 .post-text { color: #263226; white-space: pre-line; line-height: 1.75; }
@@ -34,7 +36,12 @@ body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: 
 .read-more:hover { border-color: var(--moss); background: var(--moss); }
 .tutorial-image, .screenshot-image { display: block; width: min(100%, 620px); max-height: 430px; margin-top: 22px; object-fit: cover; }
 .screenshot-image { border: 5px solid var(--ink); }
-.image-comment { display: block; margin: -8px 0 14px; color: var(--muted); font-size: 12px; }
+.image-row { display: grid; grid-template-columns: minmax(190px, .55fr) minmax(0, 1.45fr); align-items: stretch; gap: 28px; margin-top: 24px; padding: 20px; border: 1px solid rgba(27,37,28,.18); border-radius: 14px; background: rgba(255,255,255,.32); box-shadow: 0 10px 28px rgba(27,37,28,.08); }
+.image-frame { grid-column: 2; grid-row: 1; display: grid; place-items: center; align-self: center; width: 100%; min-width: 0; aspect-ratio: 16 / 9; max-height: 460px; overflow: hidden; border: 1px solid rgba(27,37,28,.3); border-radius: 10px; background: #d6d4c9; }
+.image-row .tutorial-image, .image-row .screenshot-image { width: 100%; height: 100%; min-width: 0; margin: 0; object-fit: contain; object-position: center; }
+.image-comment { grid-column: 1; grid-row: 1; align-self: center; min-width: 0; margin: 0; padding: 18px 18px 18px 20px; border-left: 3px solid var(--soil); color: var(--muted); overflow-wrap: anywhere; word-break: break-word; }
+.image-comment-label { display: block; margin-bottom: 8px; color: var(--soil); font: 700 10px 'Space Grotesk', sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+.image-comment p { display: -webkit-box; margin: 0; overflow: hidden; font-size: 13px; line-height: 1.6; -webkit-box-orient: vertical; -webkit-line-clamp: 6; }
 .post-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
 .post-link { padding: 11px 16px; border: 1px solid var(--ink); color: var(--ink); font-size: 12px; font-weight: 700; text-decoration: none; background: rgba(241,234,220,.76); }
 .post-link-item { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -45,4 +52,4 @@ body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: 
 .empty-posts { padding: 40px 0; color: #596257; }
 @keyframes specialRise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-@media (max-width: 700px) { .special-header { padding: 18px 22px; } .special-header nav { gap: 2px; } .special-header nav a { padding: 8px 7px; font-size: 10px; } .special-hero { padding: 68px 0 52px; } .post { grid-template-columns: 1fr; gap: 24px; } .post-cover { height: 220px; } .post-body h2 { font-size: 28px; } }
+@media (max-width: 700px) { .special-header { padding: 18px 22px; } .special-header nav { gap: 2px; } .special-header nav a { padding: 8px 7px; font-size: 10px; } .special-hero { padding: 68px 0 52px; } .post { grid-template-columns: 1fr; gap: 24px; } .post-cover, .post.expanded .post-cover { height: 220px; } .post-body h2 { font-size: 28px; } .image-row { display: flex; align-items: stretch; flex-direction: column; gap: 14px; } .image-frame { min-height: 180px; aspect-ratio: 4 / 3; max-height: 320px; } .image-row .tutorial-image, .image-row .screenshot-image { width: 100%; height: 100%; } .image-comment { order: 1; } }
