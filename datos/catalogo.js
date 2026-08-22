@@ -42,7 +42,7 @@ window.hakinovCatalogo = {
         {
             "titulo": "Minecraft Java Edition - PC (Launchers)",
             "slug": "",
-            "resumen": "los mejores launcher premiuns/no premiuns de Mineecraft Java Edition.",
+            "resumen": "los mejores launcher premiuns/no premiuns de Minecraft Java Edition.",
             "contenido": "",
             "portada": "especial/images/minecraft-java-edition-457367.11.jpg",
             "imagenes": [],
