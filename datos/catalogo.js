@@ -5,7 +5,7 @@ window.hakinovCatalogo = {
             "descripcion": "",
             "url": "../especial/index.html",
             "tipoUrl": "interna",
-            "imagen": "../especial/images/images.jpg",
+            "imagen": "especial/images/images.jpg",
             "pagina": "publicaciones/juegos-minecraft-1.html"
         }
     ],
@@ -19,5 +19,25 @@ window.hakinovCatalogo = {
             "pagina": "publicaciones/clientes-lunar-client-1.html"
         }
     ],
-    "especial": []
+    "especial": [
+        {
+            "titulo": "Minecraft Bedrock Edition - Movile (APK)",
+            "slug": "minecraftnnov.com",
+            "resumen": "Aqui tienes los links mas confiables para descargar las ediciones de bedrock editions mas modernas, desbloqueadas y sin acortadores o links trampa. directos y funcionales para cada version.",
+            "contenido": "Minecraft Install - Links ",
+            "portada": "../especial/images/images.jpg",
+            "imagenes": [],
+            "screenshots": [],
+            "descarga": "",
+            "enlace": "",
+            "comentarios": [],
+            "enlaces": [
+                {
+                    "etiqueta": "MInecraft PE 1.21.1",
+                    "url": "https://youtube.com",
+                    "comentario": "minecraft tatata"
+                }
+            ]
+        }
+    ]
 };

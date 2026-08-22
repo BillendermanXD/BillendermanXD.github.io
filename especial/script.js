@@ -25,28 +25,43 @@ function resourcePath(path) {
 
 function addLink(container, label, url, download = false) {
     if (!url) return;
+    const normalizedUrl = /^www\./i.test(url) ? `https://${url}` : url;
     const link = document.createElement('a');
     link.className = 'post-link';
-    link.href = resourcePath(url);
+    link.href = resourcePath(normalizedUrl);
     link.textContent = label;
     if (download) link.setAttribute('download', '');
-    if (/^https?:/i.test(url)) {
+    if (/^https?:/i.test(normalizedUrl)) {
         link.target = '_blank';
         link.rel = 'noreferrer';
     }
     container.appendChild(link);
 }
 
+function addPostLinks(container, post) {
+    addLink(container, 'Descargar', post.descarga, true);
+    addLink(container, 'Abrir enlace directo', post.enlace);
+    (post.enlaces || []).forEach(link => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'post-link-item';
+        addLink(wrapper, link.etiqueta || 'Abrir enlace', link.url);
+        if (link.comentario) {
+            const note = document.createElement('small');
+            note.textContent = link.comentario;
+            wrapper.appendChild(note);
+        }
+        container.appendChild(wrapper);
+    });
+}
+
 function createPost(post) {
     const article = document.createElement('article');
     article.className = 'post';
-    const cover = post.portada ? document.createElement('img') : null;
-    if (cover) {
-        cover.className = 'post-cover';
-        cover.src = resourcePath(post.portada);
-        cover.alt = post.titulo || 'Portada de la entrada';
-        article.appendChild(cover);
-    }
+    const cover = document.createElement('img');
+    cover.className = 'post-cover';
+    cover.src = resourcePath(post.portada || 'Resorce/img/images.jpg');
+    cover.alt = post.titulo || 'Portada de la entrada';
+    article.appendChild(cover);
 
     const content = document.createElement('div');
     content.className = 'post-body';
@@ -58,22 +73,32 @@ function createPost(post) {
     const text = document.createElement('p');
     text.className = 'post-text';
     text.textContent = post.contenido || '';
-    content.append(title, summary, text);
+    const details = document.createElement('div');
+    details.className = 'post-details';
+    details.append(text);
 
-    [...(post.imagenes || []), ...(post.screenshots || [])].forEach((imagePath, index) => {
+    const screenshotItems = (post.screenshots || []).map(screenshot => typeof screenshot === 'string'
+        ? { imagen: screenshot, comentario: '' }
+        : { imagen: screenshot.imagen || screenshot.url || '', comentario: screenshot.comentario || '' });
+    [...(post.imagenes || []).map(imagen => ({ imagen, comentario: '' })), ...screenshotItems].forEach((imageItem, index) => {
         const image = document.createElement('img');
         image.className = index < (post.imagenes || []).length ? 'tutorial-image' : 'screenshot-image';
-        image.src = resourcePath(imagePath);
+        image.src = resourcePath(imageItem.imagen);
         image.alt = index < (post.imagenes || []).length ? 'Imagen del tutorial' : 'Screenshot del proyecto';
         image.loading = 'lazy';
-        content.appendChild(image);
+        details.appendChild(image);
+        if (imageItem.comentario) {
+            const note = document.createElement('small');
+            note.className = 'image-comment';
+            note.textContent = imageItem.comentario;
+            details.appendChild(note);
+        }
     });
 
     const links = document.createElement('div');
     links.className = 'post-links';
-    addLink(links, 'Descargar', post.descarga, true);
-    addLink(links, 'Abrir enlace directo', post.enlace);
-    content.appendChild(links);
+    addPostLinks(links, post);
+    details.appendChild(links);
 
     if ((post.comentarios || []).length) {
         const comments = document.createElement('div');
@@ -86,8 +111,19 @@ function createPost(post) {
             item.textContent = comment;
             comments.appendChild(item);
         });
-        content.appendChild(comments);
+        details.appendChild(comments);
     }
+    const toggle = document.createElement('button');
+    toggle.className = 'read-more';
+    toggle.type = 'button';
+    toggle.textContent = 'Ver más';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.onclick = () => {
+        const expanded = article.classList.toggle('expanded');
+        toggle.textContent = expanded ? 'Ver menos' : 'Ver más';
+        toggle.setAttribute('aria-expanded', String(expanded));
+    };
+    content.append(title, summary, toggle, details);
     article.appendChild(content);
     return article;
 }
