@@ -9,7 +9,7 @@ let currentPage = 1;
 
 function assetPath(path) {
 	if (!path || /^(data:|https?:|\/)/i.test(path)) return path;
-	return `../${path}`;
+	return `../${path.replace(/^\.\.\//, '')}`;
 }
 
 function createGameCard(game) {
@@ -26,6 +26,7 @@ function createGameCard(game) {
 	const image = document.createElement('img');
 	image.src = assetPath(game.imagen);
 	image.alt = `Portada de ${game.nombre}`;
+	image.addEventListener('error', () => { image.src = assetPath('Resorce/img/fondo.jpeg'); });
 	applyImageLayout(image, link, game.imagen);
 
 	const content = document.createElement('span');

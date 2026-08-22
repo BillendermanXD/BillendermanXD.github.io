@@ -19,8 +19,18 @@ backgroundVideo.addEventListener('ended', playNextBackgroundVideo);
 
 function resourcePath(path) {
     if (!path || /^(https?:|data:|\/)/i.test(path)) return path;
-    if (path.startsWith('especial/')) return `../${path.slice('especial/'.length)}`;
-    return `../${path}`;
+    const projectPath = path.replace(/^\.\.\//, '');
+    if (projectPath.startsWith('especial/')) return `../${projectPath}`;
+    return `../${projectPath}`;
+}
+
+function setImageSource(image, path) {
+    image.src = resourcePath(path);
+    image.addEventListener('error', () => {
+        if (image.dataset.fallback) return;
+        image.dataset.fallback = 'true';
+        image.src = resourcePath('Resorce/img/fondo.jpeg');
+    });
 }
 
 function addLink(container, label, url, download = false) {
@@ -59,7 +69,7 @@ function createPost(post) {
     article.className = 'post';
     const cover = document.createElement('img');
     cover.className = 'post-cover';
-    cover.src = resourcePath(post.portada || 'Resorce/img/images.jpg');
+    setImageSource(cover, post.portada || 'Resorce/img/images.jpg');
     cover.alt = post.titulo || 'Portada de la entrada';
     article.appendChild(cover);
 
@@ -83,7 +93,7 @@ function createPost(post) {
     [...(post.imagenes || []).map(imagen => ({ imagen, comentario: '' })), ...screenshotItems].forEach((imageItem, index) => {
         const image = document.createElement('img');
         image.className = index < (post.imagenes || []).length ? 'tutorial-image' : 'screenshot-image';
-        image.src = resourcePath(imageItem.imagen);
+        setImageSource(image, imageItem.imagen);
         image.alt = index < (post.imagenes || []).length ? 'Imagen del tutorial' : 'Screenshot del proyecto';
         image.loading = 'lazy';
         details.appendChild(image);

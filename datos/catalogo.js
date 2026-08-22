@@ -5,7 +5,7 @@ window.hakinovCatalogo = {
             "descripcion": "",
             "url": "../especial/index.html",
             "tipoUrl": "interna",
-            "imagen": "especial/images/images.jpg",
+            "imagen": "especial/images/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg",
             "pagina": "publicaciones/juegos-minecraft-1.html"
         }
     ],
@@ -38,6 +38,19 @@ window.hakinovCatalogo = {
                     "comentario": "minecraft tatata"
                 }
             ]
+        },
+        {
+            "titulo": "Minecraft Java Edition - PC (Launchers)",
+            "slug": "",
+            "resumen": "los mejores launcher premiuns/no premiuns de Mineecraft Java Edition.",
+            "contenido": "",
+            "portada": "especial/images/minecraft-java-edition-457367.11.jpg",
+            "imagenes": [],
+            "screenshots": [],
+            "descarga": "",
+            "enlace": "",
+            "enlaces": [],
+            "comentarios": []
         }
     ]
 };

@@ -59,9 +59,10 @@ function createClientCard(client) {
 
   const image = document.createElement('img');
   const imagePath = client.imagen || 'Resorce/img/atlas.jpeg';
-  image.src = imagePath.startsWith('../') || imagePath.startsWith('http') ? imagePath : `../${imagePath}`;
+  image.src = imagePath.startsWith('http') ? imagePath : `../${imagePath.replace(/^\.\.\//, '')}`;
   image.alt = `Portada de ${client.nombre}`;
   image.loading = 'lazy';
+  image.addEventListener('error', () => { image.src = '../Resorce/img/fondo.jpeg'; });
 
   const content = document.createElement('span');
   const name = document.createElement('strong');
